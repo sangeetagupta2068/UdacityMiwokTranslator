@@ -1,21 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:minHeight="@dimen/list_item_height"
+    android:background="@color/tan_background"
+    >
+
+    <ImageView
+        android:layout_width="@dimen/list_item_height"
+        android:layout_height="@dimen/list_item_height"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/imageView"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/text_container"
+        >
 
     <TextView
         android:id="@+id/miwok_text_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="lutti"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="bottom"
+        android:background="@color/category_numbers"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:paddingLeft="16dp"
+        tools:text="lutti" />
 
     <TextView
+        android:paddingLeft="16dp"
         android:id="@+id/default_text_view"
+        android:layout_weight="1"
+        android:gravity="top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="one"/>
+        android:layout_height="0dp"
+        android:textColor="@android:color/white"
+        android:background="@color/category_numbers"
+        android:textAppearance="?android:textAppearanceSmall"
+        tools:text="one" />
 
+    </LinearLayout>
 
 </LinearLayout>

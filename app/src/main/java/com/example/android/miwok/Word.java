@@ -6,8 +6,18 @@ package com.example.android.miwok;
 
 public class Word {
 
-    String miwok;
-    String english;
+    private String miwok;
+    private String english;
+    private int imageResourceId;
+
+
+    public Word(String miwok, String english, int imageResourceId){
+
+        this.miwok = miwok;
+        this.english = english;
+        this.imageResourceId = imageResourceId;
+
+    }
 
     public Word(String miwok, String english){
 
@@ -26,4 +36,9 @@ public class Word {
         return english;
 
     }
+
+    public int getImageResourceId() {
+        return imageResourceId;
+    }
+
 }
