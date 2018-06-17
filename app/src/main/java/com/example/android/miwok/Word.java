@@ -9,36 +9,44 @@ public class Word {
     private String miwok;
     private String english;
     private int imageResourceId;
+    private int songResourceId;
 
-
-    public Word(String miwok, String english, int imageResourceId){
+    public Word(String miwok, String english, int imageResourceId, int songResourceId) {
 
         this.miwok = miwok;
         this.english = english;
         this.imageResourceId = imageResourceId;
+        this.songResourceId = songResourceId;
 
     }
 
-    public Word(String miwok, String english){
+    public Word(String miwok, String english, int songResourceId) {
 
         this.miwok = miwok;
         this.english = english;
+        this.songResourceId = songResourceId;
 
     }
 
-    public String getMiwokTranslation(){
+    public String getMiwokTranslation() {
 
         return miwok;
     }
 
-    public String getDefaultTranslation(){
+    public String getDefaultTranslation() {
 
         return english;
 
     }
 
     public int getImageResourceId() {
+
         return imageResourceId;
+    }
+
+    public int getSongResourceId() {
+
+        return songResourceId;
     }
 
 }

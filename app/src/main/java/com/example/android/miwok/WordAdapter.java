@@ -20,13 +20,15 @@ import java.util.ArrayList;
  * Created by sangeetagupta1998 on 6/7/18.
  */
 
-public class WordAdapter extends ArrayAdapter<Word>{
+public class WordAdapter extends ArrayAdapter<Word> {
 
     int colorId;
+    int songId;
 
-    public WordAdapter(@NonNull Context context, ArrayList<Word> words,int colorId) {
-        super(context, 0,words);
+    public WordAdapter(@NonNull Context context, ArrayList<Word> words, int colorId) {
+        super(context, 0, words);
         this.colorId = colorId;
+
     }
 
     @NonNull
@@ -34,9 +36,10 @@ public class WordAdapter extends ArrayAdapter<Word>{
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
         View listItemView = convertView;
-        int color = ContextCompat.getColor(getContext(),colorId);
+        int color = ContextCompat.getColor(getContext(), colorId);
 
-        if(listItemView == null) {
+
+        if (listItemView == null) {
 
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
@@ -55,12 +58,11 @@ public class WordAdapter extends ArrayAdapter<Word>{
 
         ImageView imageView = listItemView.findViewById(R.id.imageView);
 
-        if(word.getImageResourceId()==0){
+        if (word.getImageResourceId() == 0) {
 
-             imageView.setVisibility(View.GONE);
+            imageView.setVisibility(View.GONE);
 
-        }
-        else {
+        } else {
             imageView.setImageResource(word.getImageResourceId());
 
         }

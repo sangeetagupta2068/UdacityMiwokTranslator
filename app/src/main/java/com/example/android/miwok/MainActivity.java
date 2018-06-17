@@ -23,7 +23,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView textView,textView1,textView2,textView3;
+    TextView textView, textView1, textView2, textView3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this,NumbersActivity.class);
+                Intent intent = new Intent(MainActivity.this, NumbersActivity.class);
                 startActivity(intent);
 
             }
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this,FamilyActivity.class);
+                Intent intent = new Intent(MainActivity.this, FamilyActivity.class);
                 startActivity(intent);
             }
         });
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this,PhrasesActivity.class);
+                Intent intent = new Intent(MainActivity.this, PhrasesActivity.class);
                 startActivity(intent);
             }
         });
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this,ColorsActivity.class);
+                Intent intent = new Intent(MainActivity.this, ColorsActivity.class);
                 startActivity(intent);
             }
         });
