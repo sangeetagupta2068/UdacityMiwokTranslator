@@ -1,5 +1,7 @@
 package com.example.android.miwok;
 
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +14,25 @@ import java.util.ArrayList;
 public class ColorsActivity extends AppCompatActivity {
 
     ArrayList<Word> words;
+    MediaPlayer mediaPlayer;
+    AudioManager audioManager;
+    AudioManager.OnAudioFocusChangeListener audioFocusChangeListener;
+    MediaPlayer.OnCompletionListener completionListener;
+
+    private void releaseMediaMemory() {
+
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+            audioManager.abandonAudioFocus(audioFocusChangeListener);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaMemory();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +54,32 @@ public class ColorsActivity extends AppCompatActivity {
         words.add(new Word("ṭopiisә", "dusty yellow", R.drawable.color_dusty_yellow, R.raw.color_dusty_yellow));
         words.add(new Word("chiwiiṭә", "mustard yellow", R.drawable.color_mustard_yellow, R.raw.color_mustard_yellow));
 
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+        audioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+            @Override
+            public void onAudioFocusChange(int focusChange) {
+
+                switch (focusChange) {
+
+                    case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+                        mediaPlayer.pause();
+                    case AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK:
+                        mediaPlayer.pause();
+                    case AudioManager.AUDIOFOCUS_LOSS:
+                        releaseMediaMemory();
+                    case AudioManager.AUDIOFOCUS_GAIN:
+                        mediaPlayer.start();
+                }
+            }
+        };
+        completionListener = new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                releaseMediaMemory();
+            }
+        };
+
     }
 
     public void displayWords() {
@@ -44,9 +91,16 @@ public class ColorsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Word word = (Word) words.get(position);
-                MediaPlayer mediaPlayer = MediaPlayer.create(ColorsActivity.this, word.getSongResourceId());
-                mediaPlayer.start();
+                int resultAudio = audioManager.requestAudioFocus(audioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                if (resultAudio == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+
+                    mediaPlayer = MediaPlayer.create(ColorsActivity.this, word.getSongResourceId());
+                    mediaPlayer.start();
+                    mediaPlayer.setOnCompletionListener(completionListener);
+
+                }
             }
         });
+
     }
 }

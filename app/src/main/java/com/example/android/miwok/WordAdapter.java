@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class WordAdapter extends ArrayAdapter<Word> {
 
     int colorId;
-    int songId;
+    //int songId;
 
     public WordAdapter(@NonNull Context context, ArrayList<Word> words, int colorId) {
         super(context, 0, words);
@@ -48,7 +48,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         Word word = (Word) getItem(position);
 
-
+        LinearLayout linearLayout = (LinearLayout) listItemView.findViewById(R.id.background_view);
         TextView nameTextView = (TextView) listItemView.findViewById(R.id.miwok_text_view);
         nameTextView.setText(word.getMiwokTranslation());
 
@@ -68,6 +68,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         }
 
         nameTextView.setBackgroundColor(color);
+        linearLayout.setBackgroundColor(color);
         numberTextView.setBackgroundColor(color);
 
         return listItemView;

@@ -5,6 +5,8 @@
     android:id="@+id/familyView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:colorControlHighlight="@color/category_family"
+    android:drawSelectorOnTop="true"
     android:orientation="vertical"
     tools:context="com.example.android.miwok.FamilyActivity">
 
